@@ -20,7 +20,6 @@ const StaticHomeArticles = () => {
                 </Col>
             </Row>
 
-        <hr/>
             <Row>
             <h1>Global Site Chat Q &#38; A</h1>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum

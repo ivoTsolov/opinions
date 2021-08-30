@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'reactstrap';
+import { CardDeck } from 'reactstrap';
 import { getPosts } from '../../../actions/posts/posts';
 import { LoadingData } from '../../Dumb/Loading/Loading';
 import Post from './Post/Post';
@@ -24,12 +25,13 @@ const Blog = () => {
                    {!posts.length ? <LoadingData/> : (            
                    <Col md="9"> 
                     <Row>
-                        {posts.map((post)=> (
-                            
-                            <Col sm="12" md="3" key={post._id} style={{marginBottom: "10px"}} >
-                            <Post post={post} setCurrentId={setCurrentId}  authData={authData}/>
+                        <CardDeck>
+                        {posts.map((post)=> (                          
+                            <Col sm="12" md="3" key={post._id} style={{marginBottom: "10px"}}  className="d-flex full-height" >
+                                <Post post={post} setCurrentId={setCurrentId}  authData={authData}/>
                             </Col> 
-                        ))}                        
+                        ))}    
+                        </CardDeck>                    
                     </Row>
                     </Col> )}                                                           
                 <Col sm="12" md="3">

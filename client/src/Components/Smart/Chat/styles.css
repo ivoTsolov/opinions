@@ -1,0 +1,27 @@
+.chat-module {
+    border:  1px solid #212529;
+    max-height: 350px;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
+}
+.chat-section {
+    width: 100%;
+    border: 1px solid black;
+    min-height: 280px;
+    margin-top: 10px;
+}
+ 
+.chat-form {
+    margin-top: 10px;
+    display: flex;
+     
+}
+
+ 
+
+.users-lot {
+    border: 1px solid #212529;
+    height: 350px;
+    min-height: 350px;
+}
