@@ -7,10 +7,11 @@ const io = require('socket.io')(server,{
 })
 
 
-let users = [];
-const addUser = (userId, socketId) => {
+let users = []; 
+
+const addUser = (userId, socketId, name) => {
             !users.some((user)=>user.userId === userId) && 
-        users.push({userId, socketId});
+        users.push({userId, socketId, name});
 }
 const removeUser = (socketId) => {
     users = users.filter(user => user.socketId !== socketId);
@@ -21,8 +22,8 @@ io.on('connection', socket =>{
         console.log('Message received on server: ', payload)
         io.emit('message',payload)
     });
-    socket.on("addUser", userId => {
-        addUser(userId, socket.id);
+    socket.on("addUser",( userId, name )=> {
+        addUser(userId, socket.id, name);
         io.emit("getUsers", users);
     });
     
@@ -36,5 +37,5 @@ io.on('connection', socket =>{
 
 
 server.listen(7000,()=>{
-    console.log('I am listening at port: 7000)');
+    console.log('I am listening at port: 7000');
 })

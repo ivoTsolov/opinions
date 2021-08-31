@@ -13,6 +13,7 @@ const Chat = () => {
 
     const user = JSON.parse(localStorage.getItem('profile'));
     const [message, setMessage] = useState('');
+    const [userNames, setUserNames] = useState([]);
     const [chat, setChat] = useState([]);
     const socket = useRef();
 
@@ -27,16 +28,25 @@ const Chat = () => {
     }, [])
 
     useEffect(() => {
-    socket.current.emit("addUser",  user);
-    socket.current.on('getUsers', users=> 
-    console.log(users));
+    socket.current.emit("addUser",  user.result._id, (user?.result.name) || 'guest');
+    socket.current.on('getUsers',( users) => {
+        const namesData = users.map((user)=>{
+            return user.name;
+        });
+        console.log(namesData);
+        //setUserNames([...userNames, namesData]); here i wanna add just the names of the users
+
+   
         
-    }, [user])
+    });
+   
+    }, [user.result._id, user.result.name, userNames]);
 
     useEffect(() => {
         socket.current.on('message', payload => {
           setChat([...chat, payload])
         })
+
       }, [chat])
 
     return (
